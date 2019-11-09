@@ -5,61 +5,34 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Check weather for metropolitan cities in india">
+  <meta name="theme-color" content="#1976D2">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
   <title>Weather</title>
-  <style>
-    body {
-      background-color: #fafafa;
-    }
-
-    .loader {
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 16px solid #3498db;
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 2s linear infinite;
-      /* Safari */
-      animation: spin 2s linear infinite;
-    }
-
-    /* Safari */
-    @-webkit-keyframes spin {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
 </head>
 
 <body>
   <main class="container">
     <section class="row">
       <div class="col-md-6 offset-md-3 col-sm-10 offset-sm-1">
+
         <!-- Title -->
-        <h1 class="font-weight-light text-center pt-4">Weather</h1>
-        <!-- Dropdown -->
+        <h1 class="font-weight-light text-center pt-4 title">Weather</h1>
+
+        <!-- Select a city -->
         <div class="pt-4">
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Select City</option>
+          <select class="form-control" id="cityFormControl" aria-label="Select" onchange="onCityChange()">
+            <option value="">Select a city</option>
             <option>Bangalore</option>
             <option>Chennai</option>
             <option>Delhi</option>
@@ -69,26 +42,32 @@
             <option>Mumbai</option>
             <option>Nagpur</option>
             <option>Pune</option>
-            <option>Visakhapatnam</option>
+            <option value="Vishakhapatnam">Visakhapatnam</option>
           </select>
         </div>
-        <!--         <div class="pt-5 d-flex align-items-center justify-content-center">
+
+        <!-- Loader -->
+        <div class="mt-5 d-flex align-items-center justify-content-center" id="loader">
           <div class="loader"></div>
-        </div> -->
+        </div>
+
         <!-- Card -->
-        <div class="card mb-3 mt-4" style="max-width: 540px;">
+        <div class="card mb-3 mt-4 animate-bottom" id="weatherCard">
           <div class="row no-gutters">
-            <div class="col-md-4" style="background-color: #e0e0e0">
-              <div class="d-flex align-items-center justify-content-center bd-highlight" style="height: 100px">
+            <div class="col-md-4 temperature-wrapper">
+              <div class="d-flex align-items-center justify-content-center bd-highlight">
                 <div class="p-2 bd-highlight">
-                  <h2>26&#8451;</h2>
+                  <h2 id="weatherTemperature"></h2>
                 </div>
               </div>
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">Visakhapatnam</h5>
-                <p class="card-text"><small class="text-muted">Clear Sky</small></p>
+                <h5 class="card-title" id="weatherCity"></h5>
+                <p class="card-text" id="weatherDescription"><img id="weatherImage"
+                    src="http://openweathermap.org/img/wn/10d.png" alt="icon">
+                  <small class="text-muted"></small>
+                </p>
               </div>
             </div>
           </div>
@@ -97,11 +76,9 @@
     </section>
   </main>
 
-  <!-- Optional JavaScript -->
+  <!-- Optional JavaScript -->.
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
